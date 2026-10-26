@@ -7,15 +7,31 @@ namespace Kata;
 final class RockPaperScissors
 {
 
-    private array $array = ['rock', 'paper', 'scissors'];
+    private array $array = [RockPaperScissorsOptions::ROCK, RockPaperScissorsOptions::PAPER, RockPaperScissorsOptions::SCISSORS];
 
-    public function play($player1, $player2): string
+
+    public function play($player1, $player2): RockPaperScissorsOptions
     {
-        if($player1 == "rock" && $player2 == "scissors"){
-            return 'rock';
-        } else if($player1 == "scissors" && $player2 == "rock"){
-            return 'rock';
+        if($player1 == RockPaperScissorsOptions::ROCK && $player2 == RockPaperScissorsOptions::SCISSORS){
+            return RockPaperScissorsOptions::ROCK;
         }
-
+        else if($player1 == RockPaperScissorsOptions::SCISSORS && $player2 == RockPaperScissorsOptions::ROCK){
+            return RockPaperScissorsOptions::ROCK;
+        }
+        else if($player1 == RockPaperScissorsOptions::PAPER && $player2 == RockPaperScissorsOptions::ROCK){
+            return RockPaperScissorsOptions::PAPER;
+        }
+        else if($player1 == RockPaperScissorsOptions::ROCK && $player2 == RockPaperScissorsOptions::PAPER){
+            return RockPaperScissorsOptions::PAPER;
+        }
+        else if($player1 == RockPaperScissorsOptions::SCISSORS && $player2 == RockPaperScissorsOptions::PAPER){
+            return RockPaperScissorsOptions::SCISSORS;
+        }
+        else if($player1 == RockPaperScissorsOptions::PAPER && $player2 == RockPaperScissorsOptions::SCISSORS){
+            return RockPaperScissorsOptions::SCISSORS;
+        }
+        else {
+            return RockPaperScissorsOptions::ROCK;
+        }
     }
 }
