@@ -7,14 +7,14 @@ namespace KataTests;
 use Kata\ChangeMe;
 use Kata\GuessRandomNumber;
 use Kata\GuessResult;
-use Kata\NumberGenerator;
+use Kata\NumberGeneratorInterface;
 use PHPUnit\Framework\TestCase;
 
 final class GuessRandomNumberTest extends TestCase
 {
     public function testGuessRandomNumberTooHigh(): void
     {
-        $generator = $this->createMock(NumberGenerator::class);
+        $generator = $this->createMock(NumberGeneratorInterface::class);
 
         $generator->method('generate')->willReturn(3);
 
@@ -27,7 +27,7 @@ final class GuessRandomNumberTest extends TestCase
 
     public function testGuessRandomNumberCorrect(): void
     {
-        $generator = $this->createMock(NumberGenerator::class);
+        $generator = $this->createMock(NumberGeneratorInterface::class);
 
         $generator->method('generate')->willReturn(3);
 
@@ -40,7 +40,7 @@ final class GuessRandomNumberTest extends TestCase
 
     public function testGuessRandomNumberTooLow(): void
     {
-        $generator = $this->createMock(NumberGenerator::class);
+        $generator = $this->createMock(NumberGeneratorInterface::class);
 
         $generator->method('generate')->willReturn(7);
 
@@ -53,7 +53,7 @@ final class GuessRandomNumberTest extends TestCase
 
     public function testMaxRounds()
     {
-        $generator = $this->createMock(NumberGenerator::class);
+        $generator = $this->createMock(NumberGeneratorInterface::class);
         $generator->method('generate')->willReturn(1);
         $guessRandomNumber = new GuessRandomNumber($generator);
         $result1 = $guessRandomNumber->guess(9);
@@ -66,7 +66,7 @@ final class GuessRandomNumberTest extends TestCase
 
     public function testMaxRoundsWin()
     {
-        $generator = $this->createMock(NumberGenerator::class);
+        $generator = $this->createMock(NumberGeneratorInterface::class);
         $generator->method('generate')->willReturn(1);
         $guessRandomNumber = new GuessRandomNumber($generator);
         $result1 = $guessRandomNumber->guess(9);
@@ -79,7 +79,7 @@ final class GuessRandomNumberTest extends TestCase
 
     public function testMaxRoundsTooManyTries()
     {
-        $generator = $this->createMock(NumberGenerator::class);
+        $generator = $this->createMock(NumberGeneratorInterface::class);
         $generator->method('generate')->willReturn(1);
         $guessRandomNumber = new GuessRandomNumber($generator);
         $result1 = $guessRandomNumber->guess(9);
@@ -90,6 +90,14 @@ final class GuessRandomNumberTest extends TestCase
         self::assertEquals(GuessResult::LOWER, $result2);
         self::assertEquals(GuessResult::FAILED, $result3);
         self::assertEquals(GuessResult::TOO_MANY_TRIES, $result4);
+    }
+
+    public function testGenerator()
+    {
+        $generator = new NumberGenerator();
+        $number = $generator->generate();
+
+        self::assertIsNumeric($number);
     }
 
 

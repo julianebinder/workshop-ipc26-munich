@@ -10,7 +10,7 @@ final class GuessRandomNumber
     public int $generatedNumber;
     public int $counter = 0;
 
-    public function __construct(public NumberGenerator $generator)
+    public function __construct(public NumberGeneratorInterface $generator)
     {
         $this->generatedNumber = $this->generator->generate();
     }

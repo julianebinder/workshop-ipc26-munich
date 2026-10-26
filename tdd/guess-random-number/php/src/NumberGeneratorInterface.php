@@ -2,7 +2,7 @@
 
 namespace Kata;
 
-interface NumberGenerator
+interface NumberGeneratorInterface
 {
     public function generate(): int;
 
