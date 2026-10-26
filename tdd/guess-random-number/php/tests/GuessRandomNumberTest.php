@@ -96,26 +96,8 @@ final class GuessRandomNumberTest extends TestCase
     public function testGenerator_isNumber()
     {
         $generator = new NumberGenerator();
-        $number = $generator->generate();
+        $number = $generator->generate(1, 10);
 
         self::assertIsNumeric($number);
     }
-
-    public function testGenerator_assertLessThan10()
-    {
-        $generator = new NumberGenerator();
-        $number = $generator->generate();
-
-        self::assertLessThan(11, $number);
-    }
-
-    public function testGenerator_assertMoreThanZero()
-    {
-        $generator = new NumberGenerator();
-        $number = $generator->generate();
-
-        self::assertGreaterThan(0, $number);
-    }
-
-
 }

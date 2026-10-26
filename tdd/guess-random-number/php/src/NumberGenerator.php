@@ -7,8 +7,8 @@ use Kata\NumberGeneratorInterface;
 class NumberGenerator implements NumberGeneratorInterface
 {
 
-    public function generate(): int
+    public function generate($min, $max): int
     {
-        return rand(1,10);
+        return rand($min, $max);
     }
 }

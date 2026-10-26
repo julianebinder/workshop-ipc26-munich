@@ -12,7 +12,7 @@ final class GuessRandomNumber
 
     public function __construct(public NumberGeneratorInterface $generator)
     {
-        $this->generatedNumber = $this->generator->generate();
+        $this->generatedNumber = $this->generator->generate(1, 10);
     }
 
     public function guess(int $number): GuessResult
