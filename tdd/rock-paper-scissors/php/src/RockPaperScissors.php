@@ -10,6 +10,12 @@ final class RockPaperScissors
     private array $array = [RockPaperScissorsOptions::ROCK, RockPaperScissorsOptions::PAPER, RockPaperScissorsOptions::SCISSORS];
 
 
+    public function playRandom($player1)
+    {
+        $player2 = array_rand(RockPaperScissorsOptions::cases());
+        $options = $this->play($player1, $player2);
+    }
+
     public function play($player1, $player2): RockPaperScissorsOptions
     {
         if($player1 == RockPaperScissorsOptions::ROCK && $player2 == RockPaperScissorsOptions::SCISSORS){
