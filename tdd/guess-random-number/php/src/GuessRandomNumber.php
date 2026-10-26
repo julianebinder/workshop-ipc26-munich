@@ -8,6 +8,7 @@ namespace Kata;
 final class GuessRandomNumber
 {
     public int $generatedNumber;
+    public int $counter = 0;
 
     public function __construct(public NumberGenerator $generator)
     {
@@ -15,6 +16,13 @@ final class GuessRandomNumber
     }
     public function guess(int $number): GuessResult
     {
+        $this->counter++;
+        if ($this->counter > 2) {
+            if($number== $this->generatedNumber){
+                return GuessResult::HIT;
+            }
+            return GuessResult::FAILED;
+        }
         if ($number > $this->generatedNumber) {
             return GuessResult::LOWER;
         } else if ($number < $this->generatedNumber) {

@@ -50,4 +50,47 @@ final class GuessRandomNumberTest extends TestCase
 
         self::assertEquals(GuessResult::HIGHER, $isCorrect);
     }
+
+    public function testMaxRounds()
+    {
+        $generator = $this->createMock(NumberGenerator::class);
+        $generator->method('generate')->willReturn(1);
+        $guessRandomNumber = new GuessRandomNumber($generator);
+        $result1 = $guessRandomNumber->guess(9);
+        $result2 = $guessRandomNumber->guess(8);
+        $result3 = $guessRandomNumber->guess(7);
+        self::assertEquals(GuessResult::LOWER, $result1);
+        self::assertEquals(GuessResult::LOWER, $result2);
+        self::assertEquals(GuessResult::FAILED, $result3);
+    }
+
+    public function testMaxRoundsWin()
+    {
+        $generator = $this->createMock(NumberGenerator::class);
+        $generator->method('generate')->willReturn(1);
+        $guessRandomNumber = new GuessRandomNumber($generator);
+        $result1 = $guessRandomNumber->guess(9);
+        $result2 = $guessRandomNumber->guess(8);
+        $result3 = $guessRandomNumber->guess(1);
+        self::assertEquals(GuessResult::LOWER, $result1);
+        self::assertEquals(GuessResult::LOWER, $result2);
+        self::assertEquals(GuessResult::HIT, $result3);
+    }
+
+    public function testMaxRoundsTooManyTries()
+    {
+        $generator = $this->createMock(NumberGenerator::class);
+        $generator->method('generate')->willReturn(1);
+        $guessRandomNumber = new GuessRandomNumber($generator);
+        $result1 = $guessRandomNumber->guess(9);
+        $result2 = $guessRandomNumber->guess(8);
+        $result3 = $guessRandomNumber->guess(7);
+        $result4 = $guessRandomNumber->guess(6);
+        self::assertEquals(GuessResult::LOWER, $result1);
+        self::assertEquals(GuessResult::LOWER, $result2);
+        self::assertEquals(GuessResult::FAILED, $result3);
+        self::assertEquals(GuessResult::TOO_MANY_TRIES, $result4);
+    }
+
+
 }
