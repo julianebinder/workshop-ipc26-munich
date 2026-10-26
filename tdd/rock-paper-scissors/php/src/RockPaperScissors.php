@@ -13,6 +13,8 @@ final class RockPaperScissors
     {
         if($player1 == "rock" && $player2 == "scissors"){
             return 'rock';
+        } else if($player1 == "scissors" && $player2 == "rock"){
+            return 'rock';
         }
 
     }
