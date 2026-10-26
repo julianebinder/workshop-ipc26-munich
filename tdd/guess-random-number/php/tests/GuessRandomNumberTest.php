@@ -100,4 +100,12 @@ final class GuessRandomNumberTest extends TestCase
 
         self::assertIsNumeric($number);
     }
+
+    public function testAlwaysLowerThan11()
+    {
+        $generator = $this->createMock(NumberGeneratorInterface::class);
+        $generator->expects(self::once())->method('generate')->with(1, 10);
+        $guessRandomNumber = new GuessRandomNumber($generator);
+        $guessRandomNumber->guess(11);
+    }
 }
