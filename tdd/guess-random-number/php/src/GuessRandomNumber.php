@@ -14,10 +14,15 @@ final class GuessRandomNumber
     {
         $this->generatedNumber = $this->generator->generate();
     }
+
     public function guess(int $number): GuessResult
     {
         $this->counter++;
-        if ($this->counter > 2) {
+
+        if ($this->counter > 3) {
+            return GuessResult::TOO_MANY_TRIES;
+        }
+        if ($this->counter === 3) {
             if($number== $this->generatedNumber){
                 return GuessResult::HIT;
             }
