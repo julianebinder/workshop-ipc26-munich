@@ -7,6 +7,7 @@ namespace KataTests;
 use Kata\ChangeMe;
 use Kata\GuessRandomNumber;
 use Kata\GuessResult;
+use Kata\NumberGenerator;
 use Kata\NumberGeneratorInterface;
 use PHPUnit\Framework\TestCase;
 
